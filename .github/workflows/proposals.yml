@@ -1,0 +1,20 @@
+name: proposals
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy-proposals:    
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy Proposals
+      uses: amondnet/vercel-action@v20.0.0
+      with:
+        vercel-project-name: bubbles-proposals
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROPOSALS_PROJECT_ID }}
+        vercel-args: '--prod'
